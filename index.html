@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groundwork — Support Operations Infrastructure</title>
+<meta property="og:title" content="Groundwork — Support Operations Infrastructure">
+<meta property="og:description" content="Three tools for growth-stage SaaS support teams: real-time WFM, structured LMS, and AI-powered agent intelligence.">
+<meta name="theme-color" content="#1c2b1a">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f1117;--soil:#1c2b1a;--moss:#2d4a29;--sage:#4a7c45;
+  --leaf:#7ab648;--cream:#f5f0e8;--parch:#ede8dc;--warm:#faf8f4;
+  --gold:#c8a84b;--muted:#6b7280;--bd:rgba(0,0,0,.08);--red:#dc2626;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--warm);color:var(--ink);
+  font-family:'DM Sans',sans-serif;font-weight:300;
+  max-width:680px;margin:0 auto;
+  padding:0 0 40px;
+}
+
+/* ── HEADER ─────────────────────────────────── */
+header{
+  background:var(--soil);
+  padding:52px 36px 56px;
+  position:relative;overflow:hidden;
+}
+header::before{
+  content:'';position:absolute;
+  right:-80px;top:-80px;width:360px;height:360px;
+  background:radial-gradient(circle,rgba(122,182,72,.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:700;color:rgba(255,255,255,.55);
+  letter-spacing:-.3px;margin-bottom:36px;
+  position:relative;z-index:1;
+}
+.logo span{color:var(--leaf)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sage);border:1px solid rgba(74,124,69,.3);
+  padding:5px 12px;border-radius:2px;margin-bottom:22px;
+  position:relative;z-index:1;
+}
+.edot{width:5px;height:5px;border-radius:50%;background:var(--leaf);animation:pulse 2s ease-in-out infinite}
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(34px,7vw,52px);font-weight:900;
+  line-height:1.06;color:var(--cream);
+  letter-spacing:-2px;margin-bottom:18px;
+  position:relative;z-index:1;
+}
+h1 em{color:var(--leaf);font-style:italic}
+.header-sub{
+  font-size:15px;line-height:1.75;
+  color:rgba(255,255,255,.62);font-weight:300;
+  max-width:480px;margin-bottom:4px;
+  position:relative;z-index:1;
+}
+
+/* ── SECTION BLOCKS ─────────────────────────── */
+.block{padding:40px 36px;border-bottom:1px solid var(--bd)}
+.block:last-of-type{border-bottom:none}
+.block-dark{background:var(--soil);border-bottom:none}
+.block-mid{background:var(--parch)}
+
+.eyebrow-sm{
+  font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sage);margin-bottom:12px;
+}
+.block-dark .eyebrow-sm{color:var(--leaf)}
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,5vw,32px);font-weight:700;
+  color:var(--soil);line-height:1.15;
+  letter-spacing:-1px;margin-bottom:14px;
+}
+h2 em{font-style:italic;color:var(--sage)}
+.block-dark h2{color:var(--cream)}
+.block-dark h2 em{color:var(--leaf)}
+.body-text{
+  font-size:14px;line-height:1.75;
+  color:#4b5563;font-weight:300;
+  margin-bottom:22px;
+}
+.block-dark .body-text{color:rgba(255,255,255,.6)}
+
+/* ── PRODUCT CARDS ──────────────────────────── */
+.product-cards{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.pcard{
+  border-radius:10px;overflow:hidden;
+  border:1px solid var(--bd);
+}
+.pcard-head{
+  padding:20px 24px 18px;
+  position:relative;
+}
+.pcard:nth-child(1) .pcard-head{background:var(--soil)}
+.pcard:nth-child(2) .pcard-head{background:#162514}
+.pcard:nth-child(3) .pcard-head{background:#1a1d2a}
+.pcard-eyebrow{
+  font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);margin-bottom:6px;
+}
+.pcard-name{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;
+  color:var(--cream);letter-spacing:-.4px;margin-bottom:4px;
+}
+.pcard-tag{font-size:12.5px;color:rgba(255,255,255,.58);font-weight:300;line-height:1.5}
+.pcard-body{background:var(--warm);padding:18px 24px}
+.pcard-features{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:7px 16px;margin-bottom:14px}
+.pcard-features li{
+  font-size:12px;color:var(--muted);
+  display:flex;align-items:center;gap:7px;
+}
+.fdot{width:3px;height:3px;border-radius:50%;background:var(--leaf);flex-shrink:0}
+.pcard-roi{
+  background:rgba(122,182,72,.08);border:1px solid rgba(122,182,72,.16);
+  border-radius:6px;padding:10px 14px;
+  display:flex;align-items:center;gap:10px;
+}
+.roi-n{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:900;color:var(--leaf);
+  letter-spacing:-.5px;white-space:nowrap;
+}
+.roi-d{font-size:11px;color:var(--muted);line-height:1.45;font-weight:300}
+
+/* ── PROBLEMS ───────────────────────────────── */
+.problem-list{display:flex;flex-direction:column;gap:0;margin-top:24px}
+.prob{
+  display:flex;gap:16px;padding:18px 0;
+  border-bottom:1px solid var(--bd);
+}
+.prob:last-child{border-bottom:none}
+.prob-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.prob-title{font-size:14px;font-weight:500;color:var(--soil);margin-bottom:4px}
+.prob-body{font-size:12.5px;color:var(--muted);line-height:1.6;font-weight:300}
+.prob-cost{
+  display:inline-block;margin-top:7px;
+  font-size:10px;font-weight:500;color:var(--red);
+  background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.12);
+  border-radius:3px;padding:3px 9px;
+}
+
+/* ── TRIAGE VISUAL ──────────────────────────── */
+.triage-card{
+  background:var(--ink);border-radius:10px;
+  padding:18px 20px;
+  border:1px solid rgba(255,255,255,.05);
+  margin-top:24px;
+}
+.triage-chrome{
+  display:flex;align-items:center;gap:6px;
+  margin-bottom:14px;padding-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.tdot{width:8px;height:8px;border-radius:50%}
+.tdot:nth-child(1){background:#ff5f57}
+.tdot:nth-child(2){background:#febc2e}
+.tdot:nth-child(3){background:#28c840}
+.tlabel{font-size:10px;color:rgba(255,255,255,.4);margin-left:6px;letter-spacing:.03em}
+.tnote{border-radius:6px;padding:10px 13px;margin-bottom:7px}
+.tnote:last-child{margin-bottom:0}
+.nt-red{background:rgba(247,79,79,.08);border:1px solid rgba(247,79,79,.18)}
+.nt-green{background:rgba(122,182,72,.06);border:1px solid rgba(122,182,72,.14)}
+.nt-amber{background:rgba(200,168,75,.07);border:1px solid rgba(200,168,75,.15)}
+.nt-blue{background:rgba(160,190,255,.04);border:1px solid rgba(160,190,255,.1)}
+.nt-label{font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.nt-red .nt-label{color:rgba(247,120,120,.9)}
+.nt-green .nt-label{color:rgba(122,182,72,.8)}
+.nt-amber .nt-label{color:rgba(200,168,75,.9)}
+.nt-blue .nt-label{color:rgba(160,190,255,.7)}
+.nt-body{font-size:10.5px;color:rgba(255,255,255,.55);line-height:1.55}
+.nt-body strong{color:rgba(255,255,255,.78);font-weight:500}
+.tbadge{font-size:8px;font-weight:600;letter-spacing:.05em;padding:2px 6px;border-radius:3px;display:inline-block;margin:2px 2px 0 0}
+.tbr{background:rgba(247,79,79,.18);color:rgba(247,120,120,.9)}
+.tba{background:rgba(200,168,75,.15);color:rgba(200,168,75,.9)}
+
+/* ── SIGNALS ────────────────────────────────── */
+.signals{display:flex;flex-direction:column;gap:0;margin-top:24px}
+.sig-group-label{
+  font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:10px 0 8px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:4px;
+}
+.sig-group-label.red{color:#d97070}
+.sig-group-label.amber{color:var(--gold)}
+.sig{
+  display:flex;align-items:flex-start;gap:11px;
+  padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);
+}
+.sig:last-child{border-bottom:none}
+.sig-ic{
+  width:28px;height:28px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;flex-shrink:0;
+  background:rgba(74,124,69,.07);border:1px solid rgba(74,124,69,.12);
+}
+.sig-ic.r{background:rgba(217,112,112,.08);border-color:rgba(217,112,112,.15)}
+.sig-name{font-size:12px;font-weight:500;color:rgba(255,255,255,.7);margin-bottom:2px}
+.sig-desc{font-size:11px;color:rgba(255,255,255,.45);font-weight:300;line-height:1.45}
+
+/* ── ROI CARDS ──────────────────────────────── */
+.roi-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+.rcard{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:10px;padding:20px;
+}
+.rcard-icon{font-size:20px;margin-bottom:14px}
+.rcard-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--cream);margin-bottom:8px;letter-spacing:-.2px;line-height:1.3}
+.rcard-body{font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.65;font-weight:300;margin-bottom:14px}
+.rcard-stat{display:flex;align-items:center;gap:8px;background:rgba(122,182,72,.08);border:1px solid rgba(122,182,72,.16);border-radius:5px;padding:8px 12px}
+.rcard-n{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:var(--leaf);letter-spacing:-.5px;white-space:nowrap}
+.rcard-d{font-size:10px;color:rgba(255,255,255,.5);line-height:1.4;font-weight:300}
+
+/* ── INTEGRATIONS ───────────────────────────── */
+.int-row{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;align-items:center;
+}
+.int-label{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:500;width:100%;margin-bottom:2px}
+.int-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--warm);border:1px solid var(--bd);
+  border-radius:100px;padding:6px 14px;
+  font-size:12px;font-weight:500;color:var(--soil);
+}
+.idot{width:7px;height:7px;border-radius:50%}
+
+/* ── ABOUT ──────────────────────────────────── */
+.about{
+  display:flex;align-items:flex-start;gap:18px;
+  padding:32px 36px;background:var(--parch);
+  border-bottom:1px solid var(--bd);
+}
+.about-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--soil);display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:20px;color:var(--cream);font-weight:700;
+  flex-shrink:0;
+}
+.about-quote{
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-style:italic;
+  color:var(--soil);line-height:1.6;margin-bottom:10px;
+}
+.about-name{font-size:13px;font-weight:500;color:var(--soil)}
+.about-role{font-size:11px;color:var(--muted);font-weight:300;margin-top:2px}
+
+/* ── FOOTER ─────────────────────────────────── */
+footer{
+  background:var(--soil);padding:32px 36px;
+  text-align:center;
+}
+.footer-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--cream)}
+.footer-logo span{color:var(--leaf)}
+.footer-tagline{font-size:11px;color:rgba(255,255,255,.2);margin-top:3px}
+
+/* ── DIVIDER ────────────────────────────────── */
+.divider{
+  height:1px;background:var(--bd);
+  margin:0 36px;
+}
+
+/* ── ANIMATIONS ─────────────────────────────── */
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Ground<span>work</span></div>
+  <div class="eyebrow"><span class="edot"></span>Support Operations Infrastructure</div>
+  <h1>Three tools.<br>One <em>operating<br>system.</em></h1>
+  <p class="header-sub">Groundwork gives growth-stage SaaS support teams real-time workforce visibility, institutional knowledge that scales, and agents who act without waiting to be told.</p>
+</header>
+
+<!-- THE PROBLEM -->
+<div class="block block-mid">
+  <div class="eyebrow-sm">The Problem</div>
+  <h2>Support orgs run on <em>guesswork.</em><br>That has a price.</h2>
+  <div class="problem-list">
+    <div class="prob">
+      <div class="prob-icon">📊</div>
+      <div>
+        <div class="prob-title">No visibility into capacity</div>
+        <p class="prob-body">Leaders discover they're under-staffed when SLAs breach — not before. Volume forecasting is a spreadsheet updated weekly. Attrition isn't spotted until the resignation letter.</p>
+        <span class="prob-cost">$4,000–$8,000 per SLA breach</span>
+      </div>
+    </div>
+    <div class="prob">
+      <div class="prob-icon">📚</div>
+      <div>
+        <div class="prob-title">Institutional knowledge walks out the door</div>
+        <p class="prob-body">Every time an experienced agent leaves, their knowledge goes with them. New hires spend 6–8 weeks ramping. Playbooks live in someone's Notion, undiscoverable.</p>
+        <span class="prob-cost">$15,000–$20,000 per agent replacement</span>
+      </div>
+    </div>
+    <div class="prob">
+      <div class="prob-icon">⚡</div>
+      <div>
+        <div class="prob-title">Agents start every ticket cold</div>
+        <p class="prob-body">Before understanding the problem, agents search KB, Jira, prior tickets, Slack. High-value customers escalate undetected until the damage is done.</p>
+        <span class="prob-cost">4–6 min per ticket in research overhead</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="block">
+  <div class="eyebrow-sm">The Platform</div>
+  <h2>Three tools built for<br>one <em>operating system.</em></h2>
+  <div class="product-cards">
+
+    <div class="pcard">
+      <div class="pcard-head">
+        <div class="pcard-eyebrow">Workforce Management</div>
+        <div class="pcard-name">Groundwork WFM</div>
+        <div class="pcard-tag">Real-time visibility into every metric that determines how your support org actually operates.</div>
+      </div>
+      <div class="pcard-body">
+        <ul class="pcard-features">
+          <li><div class="fdot"></div>SLA adherence &amp; forecasting</li>
+          <li><div class="fdot"></div>Cost-per-ticket analysis</li>
+          <li><div class="fdot"></div>Capacity &amp; schedule builder</li>
+          <li><div class="fdot"></div>Attrition risk signals</li>
+          <li><div class="fdot"></div>Multi-region &amp; channel</li>
+          <li><div class="fdot"></div>AI operational insights</li>
+        </ul>
+        <div class="pcard-roi">
+          <div class="roi-n">Built<span style="font-size:13px;font-weight:400"> in-house</span></div>
+          <div class="roi-d">No licensing, no procurement cycle<br><span style="font-size:10px;opacity:.65">vs. $10K–$80K/yr for Verint, NICE, Assembled</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-head">
+        <div class="pcard-eyebrow">Learning Management</div>
+        <div class="pcard-name">Groundwork LMS</div>
+        <div class="pcard-tag">Stop losing institutional knowledge every time someone leaves. Build a support org that onboards faster.</div>
+      </div>
+      <div class="pcard-body">
+        <ul class="pcard-features">
+          <li><div class="fdot"></div>Structured onboarding tracks</li>
+          <li><div class="fdot"></div>Escalation playbooks</li>
+          <li><div class="fdot"></div>Certification &amp; progression</li>
+          <li><div class="fdot"></div>Knowledge base for AI</li>
+          <li><div class="fdot"></div>Ramp time analytics</li>
+          <li><div class="fdot"></div>Google Drive sync</li>
+        </ul>
+        <div class="pcard-roi">
+          <div class="roi-n">7→3 wks</div>
+          <div class="roi-d">average agent ramp time<br><span style="font-size:10px;opacity:.65">~$5K–$8K recovered per new hire</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-head">
+        <div class="pcard-eyebrow">Agent Intelligence</div>
+        <div class="pcard-name">Groundwork Assist</div>
+        <div class="pcard-tag">Every ticket researched and triaged before your agent opens it. Zero manual routing required.</div>
+      </div>
+      <div class="pcard-body">
+        <ul class="pcard-features">
+          <li><div class="fdot"></div>Auto ticket summary</li>
+          <li><div class="fdot"></div>Sentiment scoring</li>
+          <li><div class="fdot"></div>30-day history scan</li>
+          <li><div class="fdot"></div>Jira bug linking</li>
+          <li><div class="fdot"></div>Churn risk detection</li>
+          <li><div class="fdot"></div>Slack escalation alerts</li>
+        </ul>
+        <div class="pcard-roi">
+          <div class="roi-n">~$18K</div>
+          <div class="roi-d">annual value per agent recovered<br><span style="font-size:10px;opacity:.65">in research time at 30 tickets/day</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ASSIST IN ACTION -->
+<div class="block block-dark">
+  <div class="eyebrow-sm">Groundwork Assist — In Action</div>
+  <h2>From new ticket to <em>triaged &amp; ready</em><br>in under 10 seconds.</h2>
+  <p class="body-text">Assist evaluates every ticket against a signal matrix the moment it lands. Agents open a ticket to find a structured brief already written — history, sentiment, linked bugs, and a routing decision.</p>
+
+  <div class="triage-card">
+    <div class="triage-chrome">
+      <div class="tdot"></div><div class="tdot"></div><div class="tdot"></div>
+      <span class="tlabel">Ticket #67890 · Auto-generated by Groundwork Assist</span>
+    </div>
+    <div class="tnote nt-red">
+      <div class="nt-label">🚨 Triage Decision</div>
+      <div class="nt-body"><strong>HIGH PRIORITY</strong> — Routed to Escalation Queue
+        <div style="margin-top:5px"><span class="tbadge tbr">Corporate Account</span><span class="tbadge tbr">Repeat Issue (3×/30d)</span><span class="tbadge tba">Churn Risk</span></div>
+      </div>
+    </div>
+    <div class="tnote nt-green">
+      <div class="nt-label">🎯 Ticket Summary</div>
+      <div class="nt-body">Customer unable to log in via SSO since Monday. Entire team blocked. Third ticket for same issue in 30 days — prior resolutions not holding.</div>
+    </div>
+    <div class="tnote nt-amber">
+      <div class="nt-label">😤 Sentiment: Frustrated</div>
+      <div class="nt-body"><strong>Key phrases:</strong> "this keeps happening" · "completely unacceptable" · "evaluating alternatives"</div>
+    </div>
+    <div class="tnote nt-blue">
+      <div class="nt-label">🐛 Jira BUG-4421 · P1 · In Progress</div>
+      <div class="nt-body"><strong>"OAuth token expiry not handled on mobile"</strong> — Q3 fix targeted<br><span style="color:rgba(160,190,255,.4);font-size:10px">→ Guru: SSO Configuration Guide · Help Center: Reset SSO Settings</span></div>
+    </div>
+  </div>
+
+  <div class="signals">
+    <div class="sig-group-label red">HIGH — any single signal auto-escalates</div>
+    <div class="sig"><div class="sig-ic r">🔁</div><div><div class="sig-name">Repeat Issue</div><div class="sig-desc">2+ tickets, same issue, 30 days</div></div></div>
+    <div class="sig"><div class="sig-ic r">⚠️</div><div><div class="sig-name">Churn Risk</div><div class="sig-desc">Explicit exit language — high confidence only</div></div></div>
+    <div class="sig"><div class="sig-ic r">🏢</div><div><div class="sig-name">Corporate Account</div><div class="sig-desc">Enterprise tier or VIP org tag in Zendesk</div></div></div>
+    <div class="sig"><div class="sig-ic r">📬</div><div><div class="sig-name">Repeat Contact</div><div class="sig-desc">3+ tickets any topic from this customer in 30 days</div></div></div>
+    <div class="sig-group-label amber" style="margin-top:8px">MEDIUM — surfaces to agent</div>
+    <div class="sig"><div class="sig-ic">🐛</div><div><div class="sig-name">P0/P1 Jira Linked</div><div class="sig-desc">Critical or Blocker issue already open</div></div></div>
+    <div class="sig"><div class="sig-ic">🔥</div><div><div class="sig-name">Severe Urgency Language</div><div class="sig-desc">"Production down" · "complete outage" · "blocking our team"</div></div></div>
+  </div>
+</div>
+
+<!-- ROI -->
+<div class="block block-dark" style="border-top:1px solid rgba(255,255,255,.05)">
+  <div class="eyebrow-sm">Cost &amp; ROI</div>
+  <h2>Enterprise outcomes.<br><em>Without</em> enterprise pricing.</h2>
+  <p class="body-text">Built to prove that growth-stage support orgs can have the same operational infrastructure as enterprise teams — at a fraction of the cost.</p>
+
+  <div class="roi-cards">
+    <div class="rcard">
+      <div class="rcard-icon">📊</div>
+      <div class="rcard-title">WFM replaces $10K–$80K/yr tooling</div>
+      <p class="rcard-body">Verint, NICE, Assembled — replaced with a platform built in-house, tuned to how this team actually works. Same data, real-time, no lock-in.</p>
+      <div class="rcard-stat"><div class="rcard-n">No license</div><div class="rcard-d">required to run it<br>vs. $10K–$80K/yr</div></div>
+    </div>
+    <div class="rcard">
+      <div class="rcard-icon">📚</div>
+      <div class="rcard-title">LMS halves agent ramp time</div>
+      <p class="rcard-body">At $15K–$20K replacement cost per agent, cutting ramp from 7 to 3 weeks recovers thousands per hire in lost productivity.</p>
+      <div class="rcard-stat"><div class="rcard-n">~$6K</div><div class="rcard-d">recovered productivity<br>per new hire</div></div>
+    </div>
+    <div class="rcard">
+      <div class="rcard-icon">⚡</div>
+      <div class="rcard-title">Assist recovers 2–3 hrs per agent/day</div>
+      <p class="rcard-body">4–6 min per ticket in research overhead. At 30 tickets/day, that's real money — daily, per agent, at scale.</p>
+      <div class="rcard-stat"><div class="rcard-n">~$18K</div><div class="rcard-d">annual value per agent<br>in recovered time</div></div>
+    </div>
+    <div class="rcard">
+      <div class="rcard-icon">🎯</div>
+      <div class="rcard-title">One churn catch pays for a year</div>
+      <p class="rcard-body">Assist detects explicit exit language before a human would. One prevented churn event at a $20K ARR account covers the full platform cost.</p>
+      <div class="rcard-stat"><div class="rcard-n">1 save</div><div class="rcard-d">covers the full year<br>even at $20K ARR</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- INTEGRATIONS -->
+<div class="block">
+  <div class="eyebrow-sm">Integrations</div>
+  <div class="int-row">
+    <div class="int-label">Works inside the tools your team already uses</div>
+    <div class="int-pill"><span class="idot" style="background:#1f73b7"></span>Zendesk</div>
+    <div class="int-pill"><span class="idot" style="background:#6c5ce7"></span>Guru</div>
+    <div class="int-pill"><span class="idot" style="background:#0052cc"></span>Jira</div>
+    <div class="int-pill"><span class="idot" style="background:#4a154b"></span>Slack</div>
+    <div class="int-pill"><span class="idot" style="background:#0f9d58"></span>Google Drive</div>
+    <div class="int-pill"><span class="idot" style="background:#ff6b35"></span>Mux</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about">
+  <div class="about-avatar">A</div>
+  <div>
+    <p class="about-quote">"I built these tools because I couldn't find anything that gave a growth-stage support org what it actually needed — real-time visibility, structured knowledge, and agents who act without being told."</p>
+    <div class="about-name">Alex Plainte</div>
+    <div class="about-role">Product Support Manager &amp; Director of Product Operations</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Ground<span>work</span></div>
+  <div class="footer-tagline">Support operations infrastructure for growth-stage SaaS.</div>
+</footer>
+
+</body>
+</html>
